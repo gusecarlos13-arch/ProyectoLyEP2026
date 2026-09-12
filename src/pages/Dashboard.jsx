@@ -47,7 +47,7 @@ useEffect(() => {
             <p><strong>Sector:</strong> {admin.sector}</p>
           </div>
 
-          {errorCarga && <p>{errorCarga}</p>}
+          {errorCarga && <p role="alert">{errorCarga}</p>}
           <div className="dashboard-cards">
 
             <div className="dashboard-card">
