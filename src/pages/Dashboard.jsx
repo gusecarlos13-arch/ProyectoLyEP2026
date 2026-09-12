@@ -13,6 +13,7 @@ const [errorCarga, setErrorCarga] = useState("")
 useEffect(() => {
   const cargarClientes = async () => {
     try {
+      setErrorCarga("")
       const datos = await clientesService.obtenerClientes()
       setClientes(datos)
     } catch {
