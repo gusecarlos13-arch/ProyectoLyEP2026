@@ -51,7 +51,7 @@ useEffect(() => {
 
             <div className="dashboard-card">
               <h3>Clientes</h3>
-              <p>{cargando ? "Cargando..." : clientes.length}</p>
+              <p>{cargando ? "Cargando clientes..." : clientes.length}</p>
             </div>
 
             <div className="dashboard-card">
