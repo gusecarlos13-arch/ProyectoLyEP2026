@@ -8,12 +8,18 @@ const Dashboard = () => {
   const { admin } = useAutorizaciones()
   const [clientes, setClientes] = useState([])
   const [cargando, setCargando] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const cargarClientes = async () => {
-      const datos = await clientesService.obtenerClientes()
-      setClientes(datos)
-      setCargando(false)
+      try {
+        const datos = await clientesService.obtenerClientes()
+        setClientes(datos)
+      } catch {
+        setError(true)
+      } finally {
+        setCargando(false)
+      }
     }
 
     cargarClientes()
@@ -43,7 +49,7 @@ const Dashboard = () => {
 
             <div className="dashboard-card">
               <h3>Clientes</h3>
-              <p>{cargando ? 'Cargando...' : clientes.length}</p>
+              <p>{cargando ? 'Cargando...' : error ? 'Error al cargar' : clientes.length}</p>
             </div>
 
             <div className="dashboard-card">
