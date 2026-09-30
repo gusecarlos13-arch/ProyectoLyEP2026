@@ -1,9 +1,21 @@
 import '../css/dashboard.css'
 import useAutorizaciones from '../hooks/useAutorizaciones'
 import Login from './Login'
+import { useEffect, useState } from 'react'
+import clientesService from '../services/clientesService'
 
 const Dashboard = () => {
   const { admin } = useAutorizaciones()
+  const [clientes, setClientes] = useState([])
+
+  useEffect(() => {
+    const cargarClientes = async () => {
+      const datos = await clientesService.obtenerClientes()
+      setClientes(datos)
+    }
+
+    cargarClientes()
+  }, [])
 
   return (
     <div className="dashboard">
