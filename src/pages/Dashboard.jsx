@@ -7,11 +7,13 @@ import clientesService from '../services/clientesService'
 const Dashboard = () => {
   const { admin } = useAutorizaciones()
   const [clientes, setClientes] = useState([])
+  const [cargando, setCargando] = useState(true)
 
   useEffect(() => {
     const cargarClientes = async () => {
       const datos = await clientesService.obtenerClientes()
       setClientes(datos)
+      setCargando(false)
     }
 
     cargarClientes()
@@ -41,7 +43,7 @@ const Dashboard = () => {
 
             <div className="dashboard-card">
               <h3>Clientes</h3>
-              <p>{clientes.length}</p>
+              <p>{cargando ? 'Cargando...' : clientes.length}</p>
             </div>
 
             <div className="dashboard-card">
