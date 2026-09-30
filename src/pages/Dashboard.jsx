@@ -1,9 +1,29 @@
 import '../css/dashboard.css'
 import useAutorizaciones from '../hooks/useAutorizaciones'
 import Login from './Login'
+import { useEffect, useState } from 'react'
+import clientesService from '../services/clientesService'
 
 const Dashboard = () => {
   const { admin } = useAutorizaciones()
+  const [clientes, setClientes] = useState([])
+  const [cargando, setCargando] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    const cargarClientes = async () => {
+      try {
+        const datos = await clientesService.obtenerClientes()
+        setClientes(datos)
+      } catch {
+        setError(true)
+      } finally {
+        setCargando(false)
+      }
+    }
+
+    cargarClientes()
+  }, [])
 
   return (
     <div className="dashboard">
@@ -29,7 +49,7 @@ const Dashboard = () => {
 
             <div className="dashboard-card">
               <h3>Clientes</h3>
-              <p>10</p>
+              <p>{cargando ? 'Cargando...' : error ? 'Error al cargar' : clientes.length}</p>
             </div>
 
             <div className="dashboard-card">
