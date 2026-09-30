@@ -41,7 +41,7 @@ const Dashboard = () => {
 
             <div className="dashboard-card">
               <h3>Clientes</h3>
-              <p>10</p>
+              <p>{clientes.length}</p>
             </div>
 
             <div className="dashboard-card">
