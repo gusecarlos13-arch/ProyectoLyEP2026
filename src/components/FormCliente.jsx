@@ -2,8 +2,11 @@ import '../css/formcliente.css'
 import { useState } from "react";
 import { Form, Button, Alert, Spinner } from "react-bootstrap";
 import clientesService from "../services/clientesService";
+import useClientes from "../hooks/useClientes";
 
 const FormCliente = () => {
+
+    const { agregarCliente } = useClientes();
 
     const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
@@ -62,6 +65,7 @@ const FormCliente = () => {
                     nuevoCliente
                 );
 
+            agregarCliente({ ...nuevoCliente, id: respuesta.id });
             setMensaje(
                 `Cliente creado correctamente. ID: ${respuesta.id}`
             );
