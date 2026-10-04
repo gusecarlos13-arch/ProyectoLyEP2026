@@ -19,6 +19,14 @@ El flujo general es:
 5. Hacé commits semánticos frecuentes
 6. Abrí un Pull Request desde tu fork hacia este repo
 
+## Configuración local
+
+Las credenciales de acceso al sistema no están escritas en el código fuente (`src/services/autorizacionesServices.js`); se leen desde una variable de entorno (`VITE_USUARIOS`).
+
+Para que el proyecto funcione apenas se clona, el repositorio incluye un archivo `.env` con un set de usuarios de prueba (los mismos que se usaban antes del cambio). No hace falta ningún paso extra para loguearse.
+
+Si preferís usar tus propias credenciales en tu entorno local, creá un archivo `.env.local` con el mismo formato que `.env.example` — ese archivo nunca se sube al repositorio (está en `.gitignore`) y tiene prioridad sobre `.env`.
+
 ## Licencia de Uso
 
 El código fuente está bajo licencia MIT.
