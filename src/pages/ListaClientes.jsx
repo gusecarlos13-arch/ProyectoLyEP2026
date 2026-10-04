@@ -1,31 +1,12 @@
 import "../css/listaclientes.css"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import FormCliente from "../components/FormCliente";
+import useClientes from "../hooks/useClientes";
 
 const ListaClientes = () => {
-  const [clientes, setClientes] = useState([]);
+  const { clientes, loading, error } = useClientes();
   const [busqueda, setBusqueda] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/users")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Error al obtener clientes");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setClientes(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError(true);
-        setLoading(false);
-      });
-  }, []);
 
   const clientesFiltrados = clientes.filter(
     (cliente) =>
